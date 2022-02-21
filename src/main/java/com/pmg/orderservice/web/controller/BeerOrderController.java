@@ -1,14 +1,13 @@
-package com.pmg.OrderService.web;
+package com.pmg.orderservice.web.controller;
 
-import com.pmg.OrderService.domain.BeerOrder;
-import org.apache.catalina.LifecycleState;
+import com.pmg.orderservice.domain.BeerOrder;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
 
-@RequestMapping("api/v1/customer/{customerId}/")
+@RequestMapping("api/v1/customers/{customerId}/")
 @RestController
 public class BeerOrderController {
 

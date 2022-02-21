@@ -1,4 +1,4 @@
-package com.pmg.OrderService;
+package com.pmg.orderservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

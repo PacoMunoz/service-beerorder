@@ -1,4 +1,4 @@
-package com.pmg.OrderService.domain;
+package com.pmg.orderservice.domain;
 
 public enum  BeerOrderStatusEnum {
     NEW, VALIDATED, VALIDATION_PENDING, VALIDATION_EXCEPTION,

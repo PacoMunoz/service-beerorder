@@ -1,4 +1,4 @@
-package com.pmg.OrderService.domain;
+package com.pmg.orderservice.domain;
 
 import lombok.Data;
 import lombok.Getter;

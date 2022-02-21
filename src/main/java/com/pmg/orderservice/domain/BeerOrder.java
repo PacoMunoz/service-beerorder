@@ -1,6 +1,5 @@
-package com.pmg.OrderService.domain;
+package com.pmg.orderservice.domain;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
