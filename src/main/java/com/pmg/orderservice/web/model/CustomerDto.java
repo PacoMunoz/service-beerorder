@@ -1,15 +1,11 @@
-package com.pmg.orderservice.domain;
+package com.pmg.orderservice.web.model;
 
-import lombok.*;
+import com.pmg.orderservice.domain.BeerOrder;
 
 import java.util.Set;
 import java.util.UUID;
 
-@Data
-@Getter
-@Setter
-@Builder
-public class Customer extends BaseEntity {
+public class CustomerDto {
 
     private String customerName;
 

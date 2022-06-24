@@ -1,17 +1,15 @@
-package com.pmg.orderservice.domain;
+package com.pmg.orderservice.web.model;
 
+import com.pmg.orderservice.domain.BeerOrder;
+import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import javax.persistence.Entity;
 import java.util.UUID;
 
-@Entity
-@Getter
 @Setter
-@NoArgsConstructor
-public class BeerOrderLine extends BaseEntity {
+@Getter
+@Builder
+public class OrderLineDto {
 
     private BeerOrder beerOrder;
 
@@ -22,5 +20,4 @@ public class BeerOrderLine extends BaseEntity {
     private Integer orderQuantity;
 
     private Integer quantityAllocated;
-
 }

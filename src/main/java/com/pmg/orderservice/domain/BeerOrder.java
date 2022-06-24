@@ -23,6 +23,4 @@ public class BeerOrder extends BaseEntity{
 
     private String orderStatusCallbackUrl;
 
-
-
 }
