@@ -1,15 +1,16 @@
 package com.pmg.orderservice.web.model;
 
 import com.pmg.orderservice.domain.BeerOrder;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+
 import java.util.UUID;
 
 @Setter
 @Getter
 @Builder
-public class OrderLineDto {
+@AllArgsConstructor
+@NoArgsConstructor
+public class BeerOrderLineDto {
 
     private BeerOrder beerOrder;
 

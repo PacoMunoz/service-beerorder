@@ -5,14 +5,14 @@ import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
-public class OrderPagedList extends PageImpl<OrderDto> {
+public class OrderPagedList extends PageImpl<BeerOrderDto> {
 
 
-    public OrderPagedList(List<OrderDto> content, Pageable pageable, long total) {
+    public OrderPagedList(List<BeerOrderDto> content, Pageable pageable, long total) {
         super(content, pageable, total);
     }
 
-    public OrderPagedList(List<OrderDto> content) {
+    public OrderPagedList(List<BeerOrderDto> content) {
         super(content);
     }
 }

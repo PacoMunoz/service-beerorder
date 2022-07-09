@@ -3,16 +3,15 @@ package com.pmg.orderservice.web.model;
 import com.pmg.orderservice.domain.BeerOrderLine;
 import com.pmg.orderservice.domain.BeerOrderStatusEnum;
 import com.pmg.orderservice.domain.Customer;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.Set;
 
-@Getter
-@Setter
+@Data
 @Builder
-public class OrderDto {
+@AllArgsConstructor
+@NoArgsConstructor
+public class BeerOrderDto {
 
     private String customerRef;
 
