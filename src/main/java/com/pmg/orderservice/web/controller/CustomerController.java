@@ -1,6 +1,6 @@
 package com.pmg.orderservice.web.controller;
 
-import com.pmg.orderservice.web.model.CustomerPagedList;
+import com.pmg.brewery.model.CustomerPagedList;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

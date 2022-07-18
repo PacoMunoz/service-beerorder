@@ -1,8 +1,8 @@
 package com.pmg.orderservice.web.mapper;
 
 
+import com.pmg.brewery.model.CustomerDto;
 import com.pmg.orderservice.domain.Customer;
-import com.pmg.orderservice.web.model.CustomerDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 
