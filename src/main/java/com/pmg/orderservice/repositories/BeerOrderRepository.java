@@ -16,5 +16,5 @@ public interface BeerOrderRepository extends PagingAndSortingRepository<BeerOrde
 
     Page<BeerOrder> findAllByCustomer(Customer customer, Pageable pageable);
 
-    List<BeerOrder> findAllByOrderStatus(BeerOrderStatusEnum beerOrderStatusEnum);
+    List<BeerOrder> findAllByOrderStatusEnum(BeerOrderStatusEnum beerOrderStatusEnum);
 }
