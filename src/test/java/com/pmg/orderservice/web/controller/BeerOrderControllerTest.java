@@ -136,9 +136,9 @@ class BeerOrderControllerTest {
     @Test
     void getOrders() {
 
-       /* BeerOrder beerorder = beerOrderMapper.beerOrderDtoToBeerOrder(beerOrderDto1);
+        BeerOrder beerorder = beerOrderMapper.beerOrderDtoToBeerOrder(beerOrderDto1);
 
-        assertEquals(beerorder.getCustomer().getId(), beerOrderDto1.getCustomerId());*/
+        assertEquals(beerorder.getCustomer().getId(), beerOrderDto1.getCustomerId());
 
     }
 
