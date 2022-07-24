@@ -8,17 +8,24 @@ import com.pmg.orderservice.domain.BeerOrder;
 import com.pmg.orderservice.domain.BeerOrderLine;
 import com.pmg.orderservice.domain.BeerOrderStatusEnum;
 import com.pmg.orderservice.domain.Customer;
+import com.pmg.orderservice.web.mapper.BeerOrderLineMapper;
 import com.pmg.orderservice.web.mapper.BeerOrderMapper;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
+import org.mockito.InjectMocks;
+import org.mockito.Spy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.math.BigDecimal;
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
@@ -26,10 +33,12 @@ import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest(classes = BeerOrderMapper.class)
+@SpringBootTest
 class BeerOrderControllerTest {
 
     private BeerOrderMapper beerOrderMapper = Mappers.getMapper(BeerOrderMapper.class);
+    private BeerOrderLineMapper beerOrderLineMapper = Mappers.getMapper(BeerOrderLineMapper.class);
+
 
     Customer customer1 = new Customer();
     Customer customer2 = new Customer();
@@ -40,6 +49,7 @@ class BeerOrderControllerTest {
     BeerOrderLine beerOrderLine3 = new BeerOrderLine();
     CustomerDto customerDto1 = new CustomerDto();
     CustomerDto customerDto2 = new CustomerDto();
+
     BeerOrderDto beerOrderDto1 = new BeerOrderDto();
     BeerOrderDto beerOrderDto2 = new BeerOrderDto();
     BeerOrderLineDto beerOrderLineDto1 = new BeerOrderLineDto();
@@ -57,37 +67,10 @@ class BeerOrderControllerTest {
                 .orderStatusEnum(BeerOrderStatusEnum.ALLOCATED)
                 .customer(customer1)
                 .customerRef("23")
+                .createdDate(Timestamp.from(Instant.now()))
+                .lastModifiedDate(Timestamp.from(Instant.now()))
                 .build();
 
-        beerOrderDto1 = BeerOrderDto.builder()
-
-                .orderStatusCallbackUrl("http://callback.test")
-                .customerRef("12-12-1")
-                .beerOrderLines(Arrays.asList(beerOrderLineDto1, beerOrderLineDto2, beerOrderLineDto3))
-                .createdDate(OffsetDateTime.now())
-                .lastModifiedDate(OffsetDateTime.now())
-                .build();
-
-        beerOrderLine1.builder()
-                .beerId(UUID.randomUUID())
-                .orderQuantity(12)
-                .beerOrder(beerOrder1)
-                .quantityAllocated(12)
-                .build();
-
-        beerOrderLine2.builder()
-                .beerId(UUID.randomUUID())
-                .orderQuantity(12)
-                .beerOrder(beerOrder2)
-                .quantityAllocated(12)
-                .build();
-
-        beerOrderLine3.builder()
-                .beerId(UUID.randomUUID())
-                .orderQuantity(12)
-                .beerOrder(beerOrder1)
-                .quantityAllocated(12)
-                .build();
 
         beerOrderLineDto1 = BeerOrderLineDto.builder()
                 .beerId(UUID.randomUUID())
@@ -131,14 +114,58 @@ class BeerOrderControllerTest {
                 .version(1)
                 .build();
 
+        beerOrderDto1 = BeerOrderDto.builder()
+                .id(UUID.fromString("0a818933-087d-47f2-ad83-2f986ed087eb"))
+                .orderStatusCallbackUrl("http://callback.test")
+                .customerRef("12-12-1")
+                .beerOrderLines(Arrays.asList(beerOrderLineDto1, beerOrderLineDto2, beerOrderLineDto3))
+                .createdDate(OffsetDateTime.now())
+                .lastModifiedDate(OffsetDateTime.now())
+                .orderStatusEnum(BeerOrderStatusEnum.NEW.toString())
+                .build();
+
+        beerOrderLine1.builder()
+                .beerId(UUID.randomUUID())
+                .orderQuantity(12)
+                .beerOrder(beerOrder1)
+                .quantityAllocated(12)
+                .build();
+
+        beerOrderLine2.builder()
+                .beerId(UUID.randomUUID())
+                .orderQuantity(12)
+                .beerOrder(beerOrder2)
+                .quantityAllocated(12)
+                .build();
+
+        beerOrderLine3.builder()
+                .beerId(UUID.randomUUID())
+                .orderQuantity(12)
+                .beerOrder(beerOrder1)
+                .quantityAllocated(12)
+                .build();
+
     }
+
+    @Test
+    void beerOrderMapping() {
+
+        BeerOrder beerorder = beerOrderMapper.beerOrderDtoToBeerOrderIgnoreLines(beerOrderDto1);
+        assertEquals(beerorder.getCustomerRef(), beerOrderDto1.getCustomerRef());
+
+        BeerOrderDto beerOrderDto = beerOrderMapper.beerOrderToBeerOrderDto(beerOrder1);
+        assertEquals(beerorder.getCustomer().getId(), beerOrderDto.getCustomerId());
+    }
+
 
     @Test
     void getOrders() {
 
-        BeerOrder beerorder = beerOrderMapper.beerOrderDtoToBeerOrder(beerOrderDto1);
+        BeerOrderLine beerOrderLine = beerOrderLineMapper.beerOrderLineDtoToBeerOrderLine(beerOrderLineDto1);
 
-        assertEquals(beerorder.getCustomer().getId(), beerOrderDto1.getCustomerId());
+        BeerOrder beerorder = beerOrderMapper.beerOrderDtoToBeerOrderIgnoreLines(beerOrderDto1);
+
+        assertEquals(beerorder.getCustomerRef(), beerOrderDto1.getCustomerRef());
 
     }
 
