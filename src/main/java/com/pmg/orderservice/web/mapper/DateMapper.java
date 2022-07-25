@@ -1,5 +1,6 @@
 package com.pmg.orderservice.web.mapper;
 
+import org.mapstruct.Mapper;
 import org.springframework.stereotype.Component;
 
 import java.sql.Timestamp;
@@ -7,6 +8,7 @@ import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 
 @Component
+@Mapper
 public class DateMapper {
 
     public OffsetDateTime map (Timestamp ts) {

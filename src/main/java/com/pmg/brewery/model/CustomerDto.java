@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import javax.validation.constraints.Null;
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.time.OffsetDateTime;
 import java.util.UUID;
 
 @Data
@@ -29,12 +30,12 @@ public class CustomerDto implements Serializable {
     @Null
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ssZ", shape= JsonFormat.Shape.STRING)
-    private Timestamp createDate = null;
+    private OffsetDateTime createDate = null;
 
     @Null
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ssZ", shape=JsonFormat.Shape.STRING)
-    private Timestamp lastModifiedDate = null;
+    private OffsetDateTime lastModifiedDate = null;
 
     private String customerName;
 
