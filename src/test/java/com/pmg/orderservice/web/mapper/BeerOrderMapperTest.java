@@ -51,14 +51,19 @@ class BeerOrderMapperTest {
         Assertions.assertEquals(result.getVersion().toString(), beerOrder.getVersion().toString());
         Assertions.assertEquals(result.getCustomerId(), beerOrder.getCustomer().getId());
         Assertions.assertEquals(result.getBeerOrderLines().size(), beerOrder.getBeerOrderLines().size());
-        Assertions.assertEquals(result.getBeerOrderLines().get(0).getBeerId(), beerOrder.getBeerOrderLines().stream().findFirst().get().getId());
+        Assertions.assertEquals(result.getBeerOrderLines().get(0).getId(), beerOrder.getBeerOrderLines().stream().findFirst().get().getId());
         Assertions.assertEquals(result.getBeerOrderLines().get(0).getUpc(), beerOrder.getBeerOrderLines().stream().findFirst().get().getUpc());
-
+        Assertions.assertEquals(result.getCustomerRef(), beerOrder.getCustomerRef());
 
     }
 
     @Test
     void dtoToBeerOrder() {
+        BeerOrder result = beerOrderMapper.beerOrderDtoToBeerOrder(beerOrderDto);
+
+        Assertions.assertEquals(result.getCustomerRef(), beerOrderDto.getCustomerRef());
+        Assertions.assertEquals(result.getId(), beerOrderDto.getId());
+        Assertions.assertEquals(result.getBeerOrderLines().stream().findFirst().get().getId(), beerOrderDto.getBeerOrderLines().get(0).getId());
 
     }
 
