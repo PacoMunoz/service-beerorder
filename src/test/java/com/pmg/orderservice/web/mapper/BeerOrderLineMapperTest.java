@@ -48,7 +48,7 @@ class BeerOrderLineMapperTest {
                 .price(BigDecimal.valueOf(10.23))
                 .quantityAllocated(3)
                 .id(UUID.randomUUID())
-                .upc("sdaf")
+                .upc("0631234200036")
                 .version(1)
                 .createdDate(OffsetDateTime.now())
                 .lastModifiedDate(OffsetDateTime.now())
@@ -75,7 +75,7 @@ class BeerOrderLineMapperTest {
                 .orderQuantity(12)
                 .beerOrder(beerOrder)
                 .quantityAllocated(12)
-                .upc("2323")
+                .upc("0631234200036")
                 .build();
 
     }
